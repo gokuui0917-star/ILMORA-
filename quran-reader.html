@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quran Hub - Premium Reader</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Inter:wght@400;500;600&amp;family=Lexend:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface-tint": "#2b6954",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-surface-variant": "#404944",
+                        "on-surface": "#1b1c19",
+                        "surface-container-high": "#e9e8e3",
+                        "on-background": "#1b1c19",
+                        "secondary": "#1b6b51",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "surface-dim": "#dbdad5",
+                        "surface-variant": "#e3e3de",
+                        "on-secondary-fixed": "#002116",
+                        "surface-bright": "#faf9f4",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f4",
+                        "tertiary": "#735c00",
+                        "tertiary-container": "#cca72f",
+                        "on-secondary-fixed-variant": "#00513b",
+                        "on-primary-fixed": "#002117",
+                        "surface-container": "#efeee9",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#a6f2d1",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "surface-container-low": "#f5f4ef",
+                        "outline": "#707974",
+                        "inverse-surface": "#30312e",
+                        "tertiary-fixed": "#ffe088",
+                        "primary-container": "#064e3b",
+                        "surface": "#faf9f4",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-fixed": "#a6f2d1",
+                        "secondary-fixed-dim": "#8bd6b6",
+                        "outline-variant": "#bfc9c3",
+                        "primary-fixed": "#b0f0d6",
+                        "primary": "#003527",
+                        "surface-container-highest": "#e3e3de",
+                        "on-primary-container": "#80bea6",
+                        "on-secondary-container": "#237157",
+                        "inverse-primary": "#95d3ba"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-gap": "48px",
+                        "container-padding": "24px",
+                        "base": "8px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "quranic-text": ["Amiri"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-lg-mobile": ["Lexend"],
+                        "headline-sm": ["Lexend"],
+                        "display-lg": ["Lexend"],
+                        "label-caps": ["Inter"],
+                        "headline-md": ["Lexend"]
+                    },
+                    "fontSize": {
+                        "quranic-text": ["32px", { "lineHeight": "56px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "44px", "fontWeight": "600" }],
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "38px", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(191, 201, 195, 0.2);
+        }
+        .bismillah-decoration {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 L60 40 L90 50 L60 60 L50 90 L40 60 L10 50 L40 40 Z' fill='%23cca72f' opacity='0.1'/%3E%3C/svg%3E");
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .quran-verse { direction: rtl; }
+        
+        /* Reading Progress Bar Animation */
+        @keyframes progress {
+            0% { width: 0; }
+            100% { width: 45%; }
+        }
+        .animate-progress { animation: progress 1.5s ease-out forwards; }
+    </style>
+</head>
+<body class="font-body-md bg-background antialiased selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar (Web) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-primary dark:bg-primary-container border-r border-outline-variant/10 shadow-sm z-50 py-base transition-all duration-300 ease-in-out">
+<div class="px-container-padding mb-8 mt-4">
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">ILMORA</h1>
+<p class="font-label-caps text-label-caps text-on-primary/70 mt-1">Faith. Knowledge. Growth.</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary-fixed font-bold border-r-4 border-tertiary-fixed bg-on-primary-fixed-variant/10 transition-colors" href="quran-reader.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-body-md text-body-md">Quran Hub</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors hover:bg-on-primary-fixed-variant/5" href="student-dashboard.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">school</span>
+<span class="font-body-md text-body-md">My Madrasa</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors hover:bg-on-primary-fixed-variant/5" href="certificate.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_stories</span>
+<span class="font-body-md text-body-md">Spiritual Growth</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">calendar_month</span>
+<span class="font-body-md text-body-md">Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+<button class="w-full py-3 bg-secondary-container text-on-secondary-container rounded-lg font-label-caps text-label-caps hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">spa</span>
+                Quick Dhikr
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors text-sm" href="donations.html">
+<span class="material-symbols-outlined text-base">help</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-primary/70 hover:text-on-primary transition-colors text-sm" href="index.html">
+<span class="material-symbols-outlined text-base">logout</span>
+                    Sign Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full md:ml-64 relative bg-surface-bright min-h-screen">
+<!-- Reading Progress Bar -->
+<div class="fixed top-0 left-0 md:left-64 right-0 h-1 bg-surface-variant z-50">
+<div class="h-full bg-tertiary-container animate-progress rounded-r-full"></div>
+</div>
+<!-- Top Navigation Area (Reader Specific) -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-outline-variant/10 px-container-padding h-20 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-primary hover:text-primary-container p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Surah Al-Kahf</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant">The Cave • 110 Verses • Makki</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-surface-container hover:bg-surface-variant text-primary font-label-caps transition-colors">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+                    Juz 15
+                </button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-colors" title="Settings">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:text-primary hover:bg-surface-variant transition-colors" title="Bookmarks">
+<span class="material-symbols-outlined">bookmark</span>
+</button>
+</div>
+</header>
+<!-- Reading Canvas -->
+<div class="max-w-3xl mx-auto px-container-padding py-12 pb-32">
+<!-- Bismillah Header -->
+<div class="text-center mb-16 bismillah-decoration py-12">
+<h3 class="font-quranic-text text-quranic-text text-primary leading-loose tracking-wide">
+                    بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                </h3>
+<p class="font-label-caps text-label-caps text-tertiary mt-4 tracking-widest uppercase">In the name of Allah, the Entirely Merciful, the Especially Merciful.</p>
+</div>
+<!-- Verses Container -->
+<div class="space-y-16">
+<!-- Verse 1 -->
+<div class="verse-block group relative">
+<div class="absolute -left-12 top-2 hidden md:flex flex-col items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-label-caps text-tertiary-container font-bold">1</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">play_circle</span></button>
+</div>
+<div class="quran-verse font-quranic-text text-quranic-text text-primary leading-loose text-right mb-6">
+                        ٱلْحَمْدُ لِلَّهِ ٱلَّذِىٓ أَنزَلَ عَلَىٰ عَبْدِهِ ٱلْكِتَٰبَ وَلَمْ يَجْعَل لَّهُۥ عِوَجَا ۜ 
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-tertiary-container/30 text-tertiary-container text-sm mx-2 bg-surface">١</span>
+</div>
+<div class="font-body-lg text-body-lg text-on-surface mb-2">
+                        [All] praise is [due] to Allah, who has sent down upon His Servant the Book and has not made therein any deviance.
+                    </div>
+<div class="font-body-md text-body-md text-outline italic">
+                        Alhamdu lillahi allathee anzala 'ala 'abdihi alkitaba walam yaj'al lahu 'iwaja
+                    </div>
+</div>
+<hr class="border-outline-variant/20 w-1/3 mx-auto"/>
+<!-- Verse 2 -->
+<div class="verse-block group relative">
+<div class="absolute -left-12 top-2 hidden md:flex flex-col items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-label-caps text-tertiary-container font-bold">2</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">play_circle</span></button>
+</div>
+<div class="quran-verse font-quranic-text text-quranic-text text-primary leading-loose text-right mb-6">
+                        قَيِّمًۭا لِّيُنذِرَ بَأْسًۭا شَدِيدًۭا مِّن لَّدُنْهُ وَيُبَشِّرَ ٱلْمُؤْمِنِينَ ٱلَّذِينَ يَعْمَلُونَ ٱلصَّٰلِحَٰتِ أَنَّ لَهُمْ أَجْرًا حَسَنًۭا
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-tertiary-container/30 text-tertiary-container text-sm mx-2 bg-surface">٢</span>
+</div>
+<div class="font-body-lg text-body-lg text-on-surface mb-2">
+                        [He has made it] straight, to warn of severe punishment from Him and to give good tidings to the believers who do righteous deeds that they will have a good reward
+                    </div>
+<div class="font-body-md text-body-md text-outline italic">
+                        Qayyiman liyunthira ba'san shadeedan min ladunhu wayubashshira almu'mineena allatheena ya'maloona assalihati anna lahum ajran hasana
+                    </div>
+</div>
+<hr class="border-outline-variant/20 w-1/3 mx-auto"/>
+<!-- Verse 3 -->
+<div class="verse-block group relative">
+<div class="absolute -left-12 top-2 hidden md:flex flex-col items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-label-caps text-tertiary-container font-bold">3</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">play_circle</span></button>
+</div>
+<div class="quran-verse font-quranic-text text-quranic-text text-primary leading-loose text-right mb-6">
+                        مَّٰكِثِينَ فِيهِ أَبَدًۭا
+                        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-tertiary-container/30 text-tertiary-container text-sm mx-2 bg-surface">٣</span>
+</div>
+<div class="font-body-lg text-body-lg text-on-surface mb-2">
+                        In which they will remain forever
+                    </div>
+<div class="font-body-md text-body-md text-outline italic">
+                        Makitheena feehi abada
+                    </div>
+</div>
+</div>
+<!-- End of Session Marker -->
+<div class="mt-24 text-center">
+<button class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300 font-label-caps">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+                    Mark as Read &amp; Continue
+                </button>
+</div>
+</div>
+<!-- Floating Action Toolbar -->
+<div class="fixed bottom-24 md:bottom-8 left-1/2 -translate-x-1/2 glass-panel rounded-full shadow-lg px-6 py-3 flex items-center gap-6 z-40 border border-outline-variant/20">
+<!-- Audio Controls -->
+<div class="flex items-center gap-3 border-r border-outline-variant/30 pr-6">
+<button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<div class="flex flex-col hidden sm:flex">
+<span class="font-label-caps text-primary truncate w-32">Mishary Alafasy</span>
+<span class="text-[10px] text-outline">Surah Al-Kahf</span>
+</div>
+</div>
+<!-- Display Settings -->
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center" title="Decrease Font Size">
+<span class="material-symbols-outlined text-[20px]">text_decrease</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center" title="Increase Font Size">
+<span class="material-symbols-outlined text-[24px]">text_increase</span>
+</button>
+<div class="w-px h-6 bg-outline-variant/30"></div>
+<button class="text-on-surface-variant hover:text-tertiary-container transition-colors flex items-center justify-center" title="Toggle Theme">
+<span class="material-symbols-outlined">light_mode</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="flex justify-around items-center h-20 pb-safe px-4 bg-surface-container-highest/95 backdrop-blur-lg border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] fixed bottom-0 w-full z-50 rounded-t-xl md:hidden transition-all duration-300">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16" href="home.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-caps text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-secondary-container rounded-full px-5 py-1.5 active:bg-secondary-fixed-dim/20 transition-all scale-95" href="quran-reader.html">
+<span class="material-symbols-outlined mb-0.5" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-caps text-[10px] font-bold">Quran</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16" href="student-dashboard.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">school</span>
+<span class="font-label-caps text-[10px]">Madrasa</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16" href="certificate.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">auto_stories</span>
+<span class="font-label-caps text-[10px]">Growth</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors w-16" href="home.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-caps text-[10px]">Profile</span>
+</a>
+</nav>
+</body></html>

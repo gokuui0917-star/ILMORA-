@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ILMORA - Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Inter:wght@400;500;600;700&amp;family=Lexend:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "primary-fixed-dim": "#95d3ba",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-tint": "#2b6954",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-surface-variant": "#404944",
+                    "on-surface": "#1b1c19",
+                    "surface-container-high": "#e9e8e3",
+                    "on-background": "#1b1c19",
+                    "secondary": "#1b6b51",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-dim": "#dbdad5",
+                    "surface-variant": "#e3e3de",
+                    "on-secondary-fixed": "#002116",
+                    "surface-bright": "#faf9f4",
+                    "on-primary": "#ffffff",
+                    "background": "#faf9f4",
+                    "tertiary": "#735c00",
+                    "tertiary-container": "#cca72f",
+                    "on-secondary-fixed-variant": "#00513b",
+                    "on-primary-fixed": "#002117",
+                    "surface-container": "#efeee9",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-container": "#4e3d00",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#a6f2d1",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#0b513d",
+                    "surface-container-low": "#f5f4ef",
+                    "outline": "#707974",
+                    "inverse-surface": "#30312e",
+                    "tertiary-fixed": "#ffe088",
+                    "primary-container": "#064e3b",
+                    "surface": "#faf9f4",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-fixed": "#a6f2d1",
+                    "secondary-fixed-dim": "#8bd6b6",
+                    "outline-variant": "#bfc9c3",
+                    "primary-fixed": "#b0f0d6",
+                    "primary": "#003527",
+                    "surface-container-highest": "#e3e3de",
+                    "on-primary-container": "#80bea6",
+                    "on-secondary-container": "#237157",
+                    "inverse-primary": "#95d3ba"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "48px",
+                    "container-padding": "24px",
+                    "base": "8px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "quranic-text": [
+                            "Amiri"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Lexend"
+                    ],
+                    "headline-sm": [
+                            "Lexend"
+                    ],
+                    "display-lg": [
+                            "Lexend"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Lexend"
+                    ]
+            },
+            "fontSize": {
+                    "quranic-text": [
+                            "32px",
+                            {
+                                    "lineHeight": "56px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "60px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "30px",
+                            {
+                                    "lineHeight": "38px",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .squircle {
+            mask-image: paint(squircle);
+            --squircle-radius: 24px;
+            --squircle-smooth: 1;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100,0 C20,0 0,20 0,100 C0,180 20,200 100,200 C180,200 200,180 200,100 C200,20 180,0 100,0 Z'/%3E%3C/svg%3E");
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+        }
+        
+        .bg-pattern {
+            background-image: radial-gradient(var(--tw-colors-primary) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: -19px -19px;
+            opacity: 0.03;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #a6f2d1 0%, #faf9f4 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex selection:bg-tertiary-fixed selection:text-on-tertiary-fixed antialiased">
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex h-screen w-64 fixed left-0 top-0 overflow-y-auto bg-primary dark:bg-primary-container border-r border-outline-variant/10 shadow-sm flex-col py-base transition-all duration-300 ease-in-out z-50">
+<!-- Brand -->
+<div class="px-container-padding py-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-on-primary rounded-xl flex items-center justify-center text-primary font-bold text-xl">
+                I
+            </div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">ILMORA</h1>
+<p class="font-label-caps text-label-caps text-on-primary/60 uppercase">Faith. Knowledge. Growth.</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<ul class="flex flex-col gap-1 px-4 mt-8 flex-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-secondary-fixed font-bold border-r-4 border-tertiary-fixed bg-on-primary-fixed-variant/10 font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+                    Dashboard
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-primary/70 hover:text-on-primary transition-colors font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="quran-reader.html">
+<span class="material-symbols-outlined">menu_book</span>
+                    Quran Hub
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-primary/70 hover:text-on-primary transition-colors font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="student-dashboard.html">
+<span class="material-symbols-outlined">school</span>
+                    My Madrasa
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-primary/70 hover:text-on-primary transition-colors font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="certificate.html">
+<span class="material-symbols-outlined">auto_stories</span>
+                    Spiritual Growth
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-primary/70 hover:text-on-primary transition-colors font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined">calendar_month</span>
+                    Schedule
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-primary/70 hover:text-on-primary transition-colors font-body-md text-body-md hover:bg-on-primary-fixed-variant/5" href="home.html">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</li>
+</ul>
+<!-- Quick Action CTA -->
+<div class="px-4 mt-4">
+<button class="w-full py-3 bg-tertiary-fixed text-on-tertiary-fixed rounded-xl font-body-md font-semibold hover:bg-tertiary-fixed-dim transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">stream_apps</span>
+                Quick Dhikr
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="px-4 mt-8 pb-4 border-t border-outline-variant/10 pt-4">
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary/60 hover:text-on-primary transition-colors font-body-md text-sm" href="donations.html">
+<span class="material-symbols-outlined text-lg">help</span>
+                Support
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-primary/60 hover:text-on-primary transition-colors font-body-md text-sm" href="index.html">
+<span class="material-symbols-outlined text-lg">logout</span>
+                Sign Out
+            </a>
+</div>
+<!-- Ambient Pattern overlay -->
+<div class="absolute inset-0 bg-pattern pointer-events-none z-[-1]"></div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen relative pb-24 md:pb-0">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-gutter docked full-width top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20 shadow-sm sticky">
+<!-- Greeting & Date -->
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-primary dark:text-inverse-primary scale-95 active:scale-100 transition-transform">Assalamu Alaikum, Omar</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">14 Safar 1446 • Mon, Aug 19</span>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<!-- Search (Placeholder for icon if right aligned in design) -->
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant overflow-hidden hover:border-primary transition-colors">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young Muslim man with a neat beard, wearing a casual but smart modern thobe or overshirt, smiling warmly against a clean, light-colored studio background. The lighting is soft and flattering, creating a premium, modern light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxSZWg3--aoN0q3oIQqlNq1XipfYV3ePebvquSY9pJe4yA4jlyBWbbpcUc3QMQlCNhRqVAG3ldXOY7XZcZIp18ygxb2VlWfvWL7FMX-RWODhmKQNTVCCFs9ussp7IqxFr0ZQpewSAhwUmbznhQDHmnLn2ys0vVcwxhStl16gUI-wvlpsHxerJGKEmYeMngYpIPN6sbvMOnMLNNCIE2YL_6-mZauajhW1Tl22w87ph0CVB6rru9A1Hn"/>
+</button>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-container-padding flex-1 max-w-7xl mx-auto w-full flex flex-col gap-section-gap">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Hero Section: Next Prayer (Spans 8 columns on desktop) -->
+<div class="md:col-span-8 rounded-[32px] p-8 hero-gradient relative overflow-hidden shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant/50 flex flex-col justify-between min-h-[320px]">
+<!-- Background ambient illustration (Placeholder for shader/svg if available, using CSS gradient here per prompt req for beautiful background) -->
+<div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none" style="background: radial-gradient(circle at 100% 0%, #064e3b 0%, transparent 70%);"></div>
+<div class="relative z-10">
+<span class="font-label-caps text-label-caps text-primary/80 uppercase tracking-widest bg-white/40 px-3 py-1 rounded-full backdrop-blur-sm inline-block mb-4">Next Prayer</span>
+<h3 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg font-bold text-primary mb-1">Asr</h3>
+<p class="font-headline-sm text-headline-sm text-primary/70">in 1h 24m</p>
+</div>
+<div class="relative z-10 flex items-end justify-between mt-auto">
+<div>
+<p class="font-body-md text-body-md text-primary/80 mb-1">Current time: 3:45 PM</p>
+<p class="font-body-md text-body-md font-semibold text-primary">Jamat at 5:15 PM</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-xl font-body-md font-semibold shadow-[0_12px_32px_rgba(6,78,59,0.08)] hover:-translate-y-1 transition-transform">
+                            Mosque Directions
+                        </button>
+</div>
+</div>
+<!-- Quick Actions (Spans 4 columns) -->
+<div class="md:col-span-4 grid grid-cols-2 gap-4">
+<button class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col items-center justify-center gap-4 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant hover:border-primary-fixed transition-colors group">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">menu_book</span>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Quran</span>
+</button>
+<button class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col items-center justify-center gap-4 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant hover:border-primary-fixed transition-colors group">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">explore</span>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Qibla</span>
+</button>
+<button class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col items-center justify-center gap-4 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant hover:border-primary-fixed transition-colors group">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">front_hand</span>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Duas</span>
+</button>
+<button class="bg-surface-container-lowest rounded-3xl p-6 flex flex-col items-center justify-center gap-4 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant hover:border-primary-fixed transition-colors group">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">radio_button_checked</span>
+</div>
+<span class="font-body-md text-body-md font-medium text-on-surface">Dhikr</span>
+</button>
+</div>
+</div>
+<!-- Secondary Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Prayer Schedule (Spans 4 columns) -->
+<div class="md:col-span-4 bg-surface-container-lowest rounded-3xl p-6 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center justify-between">
+                        Today's Prayers
+                        <span class="font-label-caps text-label-caps text-tertiary bg-tertiary-container/20 px-3 py-1 rounded-full">3/5 Completed</span>
+</h3>
+<ul class="space-y-4 relative before:absolute before:inset-y-0 before:left-[19px] before:w-[2px] before:bg-surface-variant">
+<!-- Fajr (Completed) -->
+<li class="flex items-center gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface">Fajr</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">5:12 AM</p>
+</div>
+</li>
+<!-- Sunrise (Divider) -->
+<li class="flex items-center gap-4 relative z-10 opacity-60">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">wb_twilight</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Sunrise</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">6:34 AM</p>
+</div>
+</li>
+<!-- Dhuhr (Completed) -->
+<li class="flex items-center gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface">Dhuhr</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">1:15 PM</p>
+</div>
+</li>
+<!-- Asr (Next) -->
+<li class="flex items-center gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-tertiary-fixed-dim text-tertiary-fixed-dim flex items-center justify-center ring-4 ring-surface-container-lowest">
+<div class="w-3 h-3 rounded-full bg-tertiary-fixed-dim"></div>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-bold text-on-surface">Asr</p>
+<p class="font-label-caps text-label-caps text-tertiary-fixed-dim">5:09 PM</p>
+</div>
+</li>
+<!-- Maghrib (Pending) -->
+<li class="flex items-center gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline-variant flex items-center justify-center">
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Maghrib</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">7:42 PM</p>
+</div>
+</li>
+<!-- Isha (Pending) -->
+<li class="flex items-center gap-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-container-lowest border-2 border-outline-variant text-outline-variant flex items-center justify-center">
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Isha</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant">9:15 PM</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Spiritual Content Column (Spans 8 columns) -->
+<div class="md:col-span-8 flex flex-col gap-6">
+<!-- Today's Ayah & Continue Reading (Split row) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Today's Ayah -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border-t-2 border-tertiary flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">auto_awesome</span> Today's Ayah
+                                </span>
+<span class="font-body-md text-body-md text-primary font-medium">Al-Baqarah 2:153</span>
+</div>
+<div class="flex-1 flex flex-col justify-center my-4">
+<p class="font-quranic-text text-quranic-text text-on-surface text-right leading-loose mb-4" dir="rtl">
+                                    يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ
+                                </p>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                                    "O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient."
+                                </p>
+</div>
+</div>
+<!-- Continue Reading -->
+<div onclick="window.location.href='quran-reader.html'" class="bg-primary rounded-3xl p-6 shadow-[0_12px_32px_rgba(6,78,59,0.08)] text-on-primary flex flex-col justify-between relative overflow-hidden group cursor-pointer">
+<!-- Decorative graphic -->
+<div class="absolute -bottom-10 -right-10 w-40 h-40 opacity-10 group-hover:scale-110 transition-transform duration-700">
+<svg class="w-full h-full" fill="currentColor" viewbox="0 0 100 100"><path d="M50 0L61.2257 38.7743L100 50L61.2257 61.2257L50 100L38.7743 61.2257L0 50L38.7743 38.7743L50 0Z"></path></svg>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-primary-fixed-dim uppercase tracking-widest mb-2 block">Continue Reading</span>
+<h4 class="font-headline-sm text-headline-sm font-semibold mb-1">Surah Al-Kahf</h4>
+<p class="font-body-md text-body-md text-on-primary/70">Ayah 12-25 • Page 294</p>
+</div>
+<div class="mt-8">
+<div class="flex justify-between font-label-caps text-label-caps text-on-primary/80 mb-2">
+<span>Juz 15 Progress</span>
+<span>45%</span>
+</div>
+<div class="h-2 w-full bg-on-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-fixed w-[45%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Today's Hadith -->
+<div class="bg-surface-container-lowest rounded-3xl p-6 shadow-[0_4px_20px_rgba(6,78,59,0.04)] border border-surface-variant flex items-start gap-6">
+<div class="hidden sm:flex w-12 h-12 rounded-xl bg-surface-container items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Daily Hadith</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-label-caps text-label-caps text-primary">Sahih Bukhari</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface leading-relaxed">
+                                The Prophet (ﷺ) said, "The best among you (Muslims) are those who learn the Qur'an and teach it."
+                            </p>
+<button class="mt-4 text-primary font-body-md font-medium hover:text-primary-container flex items-center gap-1">
+                                Read full context <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-highest/95 dark:bg-inverse-surface/95 backdrop-blur-lg border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-20 pb-safe px-4 pb-2">
+<a class="flex flex-col items-center justify-center text-primary bg-secondary-container rounded-full px-4 py-1 font-label-caps text-label-caps scale-90 duration-150 active:bg-secondary-fixed-dim/20" href="home.html">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-label-caps active:bg-secondary-fixed-dim/20 transition-colors" href="quran-reader.html">
+<span class="material-symbols-outlined mb-1">menu_book</span>
+            Quran
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-label-caps active:bg-secondary-fixed-dim/20 transition-colors" href="student-dashboard.html">
+<span class="material-symbols-outlined mb-1">school</span>
+            Madrasa
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-label-caps active:bg-secondary-fixed-dim/20 transition-colors" href="certificate.html">
+<span class="material-symbols-outlined mb-1">auto_stories</span>
+            Growth
+        </a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant font-label-caps text-label-caps active:bg-secondary-fixed-dim/20 transition-colors" href="home.html">
+<span class="material-symbols-outlined mb-1">person</span>
+            Profile
+        </a>
+</nav>
+</body></html>
